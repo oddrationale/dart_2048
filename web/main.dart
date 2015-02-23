@@ -4,5 +4,8 @@
 import 'package:dart_2048/keyboard_input_manager.dart';
 
 void main() {
-  print("Hello, World!");
+  var k = new KeyboardInputManager();
+  k.onMove((x) => print(x));
+  k.onRestart(() => print("restart"));
+  k.onKeepPlaying(() => print("keep playing"));
 }
