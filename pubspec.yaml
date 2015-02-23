@@ -1,0 +1,9 @@
+name: dart_2048
+version: 0.0.1
+author: Dariel Dato-on
+description: A straight port of 2048 to dart.
+homepage: https://github.com/oddrationale/dart_2048
+environment:
+  sdk: '>=1.0.0 <2.0.0'
+dependencies:
+  browser: any

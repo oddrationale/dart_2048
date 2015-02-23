@@ -1,0 +1,16 @@
+*.dart.js
+*.iml
+*.ipr
+*.iws
+*.js.deps
+*.js.map
+*.js_
+*~
+.buildlog
+.DS_Store
+.idea
+.project
+.pub/
+build/
+packages
+pubspec.lock
