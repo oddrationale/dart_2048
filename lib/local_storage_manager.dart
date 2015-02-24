@@ -13,7 +13,9 @@ class LocalStorageManager {
 
   // Best score getters/setters
   num getBestScore() {
-    return (storage[bestScoreKey] != null) ? storage[bestScoreKey] as num : 0;
+    return (storage[bestScoreKey] != null) ?
+        num.parse(storage[bestScoreKey]) :
+        0;
   }
   void setBestScore(num score) {
     storage[bestScoreKey] = "${score}";
@@ -37,8 +39,8 @@ class LocalStorageManager {
       }
     });
   }
-  void setGameState(String gameState) {
-    storage[gameStateKey] = gameState;
+  void setGameState(Map gameState) {
+    storage[gameStateKey] = JSON.encode(gameState);
   }
   void clearGameState() {
     storage.remove(gameStateKey);

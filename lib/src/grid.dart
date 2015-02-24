@@ -24,12 +24,13 @@ class Grid {
   }
 
   // Find the first available random position
-  randomAvailableCell() {
+  Position randomAvailableCell() {
     List<Position> availableCells = this.availableCells();
 
-    if (availableCells.length > 0) {
-      return availableCells[new Random().nextInt(availableCells.length + 1)];
+    if (availableCells.length == 0) {
+      return null;
     }
+    return availableCells[new Random().nextInt(availableCells.length + 1)];
   }
 
   List<Position> availableCells() {
