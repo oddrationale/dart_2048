@@ -10,7 +10,8 @@ class Grid {
   // Build a grid of the specified size
   Grid(num size) {
     this.size = size;
-    this.cells = new List<List>.filled(size, new List<Tile>(size));
+    //this.cells = new List<List>.filled(size, new List<Tile>(size));
+    this.cells = new List<List>.generate(size, (_) => new List<Tile>(size));
   }
 
   Grid.fromState(num size, List<List<Tile>> state) {
@@ -18,7 +19,7 @@ class Grid {
     this.cells = state;
   }
 
-  Grid.fromJson(Map json) {
+  Grid.fromJson(Map<String, dynamic> json) {
     this.size = json["size"];
     this.cells = json["cells"];
   }
@@ -30,13 +31,13 @@ class Grid {
     if (availableCells.length == 0) {
       return null;
     }
-    return availableCells[new Random().nextInt(availableCells.length + 1)];
+    return availableCells[new Random().nextInt(availableCells.length)];
   }
 
   List<Position> availableCells() {
     List<Position> availableCells = new List<Position>();
 
-    eachCell((x, y, tile) {
+    eachCell((num x, num y, Tile tile) {
       if (tile == null) {
         availableCells.add(new Position(x, y));
       }
@@ -46,9 +47,9 @@ class Grid {
   }
 
   // Call callback for every cell
-  void eachCell(Function callback) {
-    for (var x = 0; x < size; x++) {
-      for (var y = 0; y < size; y++) {
+  void eachCell(void callback(num x, num y, Tile tile)) {
+    for (num x = 0; x < size; x++) {
+      for (num y = 0; y < size; y++) {
         callback(x, y, cells[x][y]);
       }
     }
@@ -62,12 +63,11 @@ class Grid {
 
   bool cellOccupied(Position cell) => cellContent(cell) != null;
 
-  cellContent(Position cell) {
-    if (withinBounds(cell)) {
-      return cells[cell.x][cell.y];
-    } else {
+  Tile cellContent(Position cell) {
+    if (!withinBounds(cell)) {
       return null;
     }
+    return cells[cell.x][cell.y];
   }
 
   // Inserts a tile at its position
@@ -86,7 +86,7 @@ class Grid {
         position.y < size;
   }
 
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     "size": size,
     "cells": cells,
   };

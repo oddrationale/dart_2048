@@ -46,9 +46,7 @@ class GameManager {
   }
 
   // Check if game is terminated
-  bool isGameTerminated() {
-    return over || (won && !keepPlaying);
-  }
+  bool isGameTerminated() => over || (won && !keepPlaying);
 
   // Set up the game
   void setup() {
@@ -113,7 +111,7 @@ class GameManager {
     });
   }
 
-  Map toJson() => {
+  Map<String, dynamic> toJson() => {
     'grid': grid,
     'score': score,
     'over': over,
@@ -123,7 +121,7 @@ class GameManager {
 
   // Save all tile positions and remove merger info
   void prepareTiles() {
-    grid.eachCell((x, y, tile) {
+    grid.eachCell((num x, num y, Tile tile) {
       if (tile != null) {
         tile.mergedFrom = null;
         tile.savePosition();
@@ -147,20 +145,20 @@ class GameManager {
     Tile tile;
 
     Position vector = getVector(direction);
-    Map traversals = buildTraversals(vector);
+    Map<String, List<num>> traversals = buildTraversals(vector);
     bool moved = false;
 
     // Save the current tile positions and remove merger information
     prepareTiles();
 
     // Traverse the grid in the right direction and move tiles
-    traversals['x'].forEach((x) {
-      traversals['y'].forEach((y) {
+    traversals['x'].forEach((num x) {
+      traversals['y'].forEach((num y) {
         cell = new Position(x, y);
         tile = grid.cellContent(cell);
 
         if (tile != null) {
-          Map positions = findFarthestPosition(cell, vector);
+          Map<String, Position> positions = findFarthestPosition(cell, vector);
           Tile next = grid.cellContent(positions['next']);
 
           // Only one merger per row traversal?
@@ -216,6 +214,7 @@ class GameManager {
     return map[direction];
   }
 
+  // Build a list of positions to traverse in the right order
   Map<String, List<num>> buildTraversals(Position vector) {
     Map<String, List<num>> traversals = {
       'x': [],
@@ -226,6 +225,10 @@ class GameManager {
       traversals['x'].add(pos);
       traversals['y'].add(pos);
     }
+
+    // Always traverse from the farthest cell in the chosen direction
+    if (vector.x == 1) traversals['x'] = traversals['x'].reversed;
+    if (vector.y == 1) traversals['y'] = traversals['y'].reversed;
 
     return traversals;
   }
@@ -245,9 +248,7 @@ class GameManager {
     };
   }
 
-  bool movesAvailable() {
-    return grid.cellsAvailable() || tileMatchesAvailable();
-  }
+  bool movesAvailable() => grid.cellsAvailable() || tileMatchesAvailable();
 
   // Check for available matches between tiles (more expensive check)
   bool tileMatchesAvailable() {

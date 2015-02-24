@@ -39,7 +39,7 @@ class LocalStorageManager {
       }
     });
   }
-  void setGameState(Map gameState) {
+  void setGameState(Map<String, dynamic> gameState) {
     storage[gameStateKey] = JSON.encode(gameState);
   }
   void clearGameState() {

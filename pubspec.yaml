@@ -1,6 +1,6 @@
 name: dart_2048
 version: 0.0.1
-author: Dariel Dato-on
+author: Dariel Dato-on <oddrationale@gmail.com>
 description: A straight port of 2048 to dart.
 homepage: https://github.com/oddrationale/dart_2048
 environment:

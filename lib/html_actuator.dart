@@ -16,12 +16,10 @@ class HTMLActuator {
     window.requestAnimationFrame((_) {
       clearContainer(tileContainer);
 
-      grid.cells.forEach((column) {
-        column.forEach((cell) {
-          if (cell != null) {
-            addTile(cell);
-          }
-        });
+      grid.eachCell((num x, num y, Tile tile) {
+        if (tile != null) {
+          addTile(tile);
+        }
       });
 
       updateScore(metadata["score"]);
