@@ -1,9 +1,7 @@
-*.dart.js
 *.iml
 *.ipr
 *.iws
 *.js.deps
-*.js.map
 *.js_
 *~
 .buildlog
@@ -11,6 +9,5 @@
 .idea
 .project
 .pub/
-build/
 packages
 pubspec.lock

@@ -10,7 +10,6 @@ class Grid {
   // Build a grid of the specified size
   Grid(num size) {
     this.size = size;
-    //this.cells = new List<List>.filled(size, new List<Tile>(size));
     this.cells = new List<List>.generate(size, (_) => new List<Tile>(size));
   }
 
