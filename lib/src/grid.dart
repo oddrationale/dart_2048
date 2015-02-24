@@ -1,5 +1,7 @@
-import 'dart:math';
-import 'tile.dart';
+library dart_2048.grid;
+
+import 'dart:math' show Random;
+import 'tile.dart' show Position, Tile;
 
 class Grid {
   num size;

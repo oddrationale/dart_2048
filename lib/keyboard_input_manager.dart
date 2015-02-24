@@ -1,5 +1,7 @@
+library dart_2048.keyboard_input_manager;
+
 import 'dart:html';
-import 'dart:math';
+import 'dart:math' show max;
 
 class KeyboardInputManager {
   Function moveEvent;
