@@ -1,3 +1,22 @@
-# dart_2048
+# Dart 2048
 
-A straight port of 2048 to dart.
+This is a port of the [2048 game](http://gabrielecirulli.github.io/2048/) to the [Dart programming language](https://www.dartlang.org/).
+
+You can play a working version here: [http://oddrationale.github.io/dart_2048](http://oddrationale.github.io/dart_2048).
+
+The best way to learn a programming language is to use. Hence, I used this project as a way of familiarizing myself with Dart. This is a fairly straight port of the original [JavaScript code](https://github.com/gabrielecirulli/2048/tree/master/js) to Dart. There are a few differences where I tried to use more Dart-like idioms.
+
+## Lessons Learned
+
+Here are some of my key take-aways from going through this exercise:
+
+1. Annotated types makes Dart is more precise than JavaScript. The code feels less likely to break. When porting the JavaScript code, I often had to read ahead in code to find out what a variable was and what I was supposed to do with it. With Dart type annotations, you  know right away. Another example are Events. In JavaScript, you pass the event name as a string. But in Dart, the element has specific event names (e.g., `OnKeyDown`, `OnTouchEvent`, etc.).
+2. Conversely, JavaScript is more flexible than Dart. This is especially, true with JavaScript objects, which can be like an object or like an associative map. Other examples include how JavaScript interpret truthy and falsey values. In Dart, you have to make an explicit comparison. The flexibility of JavaScript allows you to write clever code. Dart code is actually rather boring (which can be a good thing).
+3. Working with JSON in Dart is not easy. Being made for the web, you would expect a more seamless JSON interoperability. But I think this stems from the fact that Dart objects are not inherently JSON. So things start to get messy when you want to convert a Dart object to JSON, especially if the object has sub-objects (see the Grid object in the code, for example). You need to define a `toJSON()` method to every class to instruct how to convert the class to a JSON string. Converting from JSON back to the original objects was even more difficult. I found the easiest way was to create a `fromJson()` constructor and call the constructor using the reviver function. You can see an example in the LocalStorageManager class.
+4. Optional type annotation can make the code rather verbose. Especially if your class names are long. E.g., `MyLongClassName variable = new MyLongClassName();`. Doing this after a while gets repetitive. But I guess you can always use `var`, but then you sometimes lose out on the IDE tool hints.
+5. Speaking of tooling, Dart has great tooling! I actually started like the Dart Editor. The error and warning hints were very helpful in letting me know if I was going in the right direction. I also enjoyed the auto-complete feature, live debugging, and auto formatting (including 80 characters line lengths).
+6. More on tooling, the debugging and break points feature was extremely helpful in figuring out what was wrong. Especially in cases where no error occurred, but I was not getting the desired result. These features are what probably will keep me using the Dart Editor (or Webstorm) instead of my usual vim or Sublime Text.
+7. I really liked the built-in HTML library. Feels almost like having jQuery built right into the platform.
+8. Although I didn't use it extensively, the unit testing library seems like a great way to start with getting into testing. Also great that it is built right in. Seems like a lot of best practices are included in the Dart platform by default.
+9. The Dart community is great and growing. I asked [a question on StackOverflow](http://stackoverflow.com/q/28703841/948144) and literally had an answer in five minutes!
+10. It's too bad that Dart has to be compiled to JavaScript, as there are no native implementations yet (besides Dartium). Whether other vendors will adopt Dart seems doubtful. If you're going to have to compile to JavaScript, then would it not be better to take the time to learn good JavaScript instead? The new ES6 standard seems to pushing JavaScript in the right direction and take away a lot of the annoyances of the language. In fact, a lotof ES6 seem almost Dart-like. But even with ES6, you will still need to transpile it to work in most browsers (at least for now). In that case, I'd rather stick with Dart than go with ES6. Web apps are so complex these days that there will probably always be a compile step between development and production - whether that be compilation to JS (Dart, CoffeeScript), compiling to CSS (less, sass), minification, concatenation, etc.
