@@ -10,13 +10,13 @@ class HTMLActuator {
   DivElement bestContainer = querySelector(".best-container");
   DivElement messageContainer = querySelector(".game-message");
 
-  num score = 0;
+  int score = 0;
 
   void actuate(Grid grid, Map metadata) {
     window.requestAnimationFrame((_) {
       clearContainer(tileContainer);
 
-      grid.eachCell((num x, num y, Tile tile) {
+      grid.eachCell((int x, int y, Tile tile) {
         if (tile != null) {
           addTile(tile);
         }
@@ -101,10 +101,10 @@ class HTMLActuator {
     return "tile-position-${position.x}-${position.y}";
   }
 
-  void updateScore(num score) {
+  void updateScore(int score) {
     clearContainer(scoreContainer);
 
-    num difference = score - this.score;
+    int difference = score - this.score;
     this.score = score;
 
     scoreContainer.text = "${this.score}";
@@ -118,7 +118,7 @@ class HTMLActuator {
     }
   }
 
-  void updateBestScore(num bestScore) {
+  void updateBestScore(int bestScore) {
     bestContainer.text = "${bestScore}";
   }
 

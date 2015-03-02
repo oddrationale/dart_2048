@@ -4,16 +4,16 @@ import 'dart:math' show Random;
 import 'tile.dart' show Position, Tile;
 
 class Grid {
-  num size;
+  int size;
   List<List<Tile>> cells;
 
   // Build a grid of the specified size
-  Grid(num size) {
+  Grid(int size) {
     this.size = size;
     this.cells = new List<List>.generate(size, (_) => new List<Tile>(size));
   }
 
-  Grid.fromState(num size, List<List<Tile>> state) {
+  Grid.fromState(int size, List<List<Tile>> state) {
     this.size = size;
     this.cells = state;
   }
@@ -36,7 +36,7 @@ class Grid {
   List<Position> availableCells() {
     List<Position> availableCells = new List<Position>();
 
-    eachCell((num x, num y, Tile tile) {
+    eachCell((int x, int y, Tile tile) {
       if (tile == null) {
         availableCells.add(new Position(x, y));
       }
@@ -46,9 +46,9 @@ class Grid {
   }
 
   // Call callback for every cell
-  void eachCell(void callback(num x, num y, Tile tile)) {
-    for (num x = 0; x < size; x++) {
-      for (num y = 0; y < size; y++) {
+  void eachCell(void callback(int x, int y, Tile tile)) {
+    for (int x = 0; x < size; x++) {
+      for (int y = 0; y < size; y++) {
         callback(x, y, cells[x][y]);
       }
     }

@@ -8,11 +8,11 @@ import 'src/grid.dart';
 import 'src/tile.dart';
 
 class GameManager {
-  num size = 4; // Size of the grid
-  num startTiles = 2;
+  int size = 4; // Size of the grid
+  int startTiles = 2;
 
   Grid grid;
-  num score = 0;
+  int score = 0;
   bool over = false;
   bool won = false;
   bool keepPlaying = false;
@@ -75,14 +75,14 @@ class GameManager {
   }
 
   void addStartTiles() {
-    for (num i = 0; i < startTiles; i++) {
+    for (int i = 0; i < startTiles; i++) {
       addRandomTile();
     }
   }
 
   void addRandomTile() {
     if (grid.cellsAvailable()) {
-      num value = (new Random().nextDouble() < 0.9) ? 2 : 4;
+      int value = (new Random().nextDouble() < 0.9) ? 2 : 4;
       Tile tile = new Tile(grid.randomAvailableCell(), value);
 
       grid.insertTile(tile);
@@ -121,7 +121,7 @@ class GameManager {
 
   // Save all tile positions and remove merger info
   void prepareTiles() {
-    grid.eachCell((num x, num y, Tile tile) {
+    grid.eachCell((int x, int y, Tile tile) {
       if (tile != null) {
         tile.mergedFrom = null;
         tile.savePosition();
@@ -137,7 +137,7 @@ class GameManager {
   }
 
   // Move tiles on the grid in the specified direction
-  void move(num direction) {
+  void move(int direction) {
     // 0: up, 1: right, 2: down, 3: left
     if (isGameTerminated()) return; // Don't do anything if the game's over
 
@@ -152,8 +152,8 @@ class GameManager {
     prepareTiles();
 
     // Traverse the grid in the right direction and move tiles
-    traversals['x'].forEach((num x) {
-      traversals['y'].forEach((num y) {
+    traversals['x'].forEach((int x) {
+      traversals['y'].forEach((int y) {
         cell = new Position(x, y);
         tile = grid.cellContent(cell);
 
@@ -202,7 +202,7 @@ class GameManager {
   }
 
   // Get the vector representing the chosen direction
-  Position getVector(num direction) {
+  Position getVector(int direction) {
     // Vectors representing tile movement
     Map<num, Position> map = {
       0: new Position(0, -1), // Up
@@ -221,7 +221,7 @@ class GameManager {
       'y': [],
     };
 
-    for (num pos = 0; pos < size; pos++) {
+    for (int pos = 0; pos < size; pos++) {
       traversals['x'].add(pos);
       traversals['y'].add(pos);
     }
@@ -254,12 +254,12 @@ class GameManager {
   bool tileMatchesAvailable() {
     Tile tile;
 
-    for (num x = 0; x < size; x++) {
-      for (num y = 0; y < size; y++) {
+    for (int x = 0; x < size; x++) {
+      for (int y = 0; y < size; y++) {
         tile = grid.cellContent(new Position(x, y));
 
         if (tile != null) {
-          for (num direction = 0; direction < 4; direction++) {
+          for (int direction = 0; direction < 4; direction++) {
             Position vector = getVector(direction);
             Position cell = new Position(x + vector.x, y + vector.y);
 

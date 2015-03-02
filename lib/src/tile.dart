@@ -1,7 +1,7 @@
 library dart_2048.tile;
 
 class Position {
-  num x, y;
+  int x, y;
 
   Position(this.x, this.y);
 
@@ -18,7 +18,7 @@ class Position {
 
 class Tile {
   Position position, previousPosition;
-  num value = 2;
+  int value = 2;
   List<Tile> mergedFrom;
 
   Tile(this.position, this.value);

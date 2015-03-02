@@ -12,12 +12,12 @@ class LocalStorageManager {
   Storage storage = window.localStorage;
 
   // Best score getters/setters
-  num getBestScore() {
+  int getBestScore() {
     return (storage[bestScoreKey] != null) ?
         num.parse(storage[bestScoreKey]) :
         0;
   }
-  void setBestScore(num score) {
+  void setBestScore(int score) {
     storage[bestScoreKey] = "${score}";
   }
 
@@ -30,7 +30,7 @@ class LocalStorageManager {
     return JSON.decode(stateJSON, reviver: (key, value) {
       if (key == 'position') {
         return new Position.fromJson(value);
-      } else if (key is num && value is Map) {
+      } else if (key is int && value is Map) {
         return new Tile.fromJson(value);
       } else if (key == 'grid') {
         return new Grid.fromJson(value);

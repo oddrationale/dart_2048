@@ -74,7 +74,7 @@ class KeyboardInputManager {
     bindButtonPress(".keep-playing-button", keepPlaying);
 
     // Respond to swipe events
-    num touchStartClientX, touchStartClientY;
+    int touchStartClientX, touchStartClientY;
     DivElement gameContainer = querySelector(".game-container");
 
     gameContainer.onTouchStart.listen((TouchEvent event) {
@@ -97,16 +97,16 @@ class KeyboardInputManager {
         return; // Ignore if still touching with one or more fingers
       }
 
-      num touchEndClientX, touchEndClientY;
+      int touchEndClientX, touchEndClientY;
 
       touchEndClientX = event.changedTouches[0].client.x;
       touchEndClientY = event.changedTouches[0].client.y;
 
-      num dx = touchEndClientX - touchStartClientX;
-      num absDx = dx.abs();
+      int dx = touchEndClientX - touchStartClientX;
+      int absDx = dx.abs();
 
-      num dy = touchEndClientY - touchStartClientY;
-      num absDy = dy.abs();
+      int dy = touchEndClientY - touchStartClientY;
+      int absDy = dy.abs();
 
       if (max(absDx, absDy) > 10) {
         // (right : left) : (down : up)

@@ -9,5 +9,6 @@
 .idea
 .project
 .pub/
+build/
 packages
 pubspec.lock
