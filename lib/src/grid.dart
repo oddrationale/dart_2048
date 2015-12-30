@@ -85,8 +85,5 @@ class Grid {
         position.y < size;
   }
 
-  Map<String, dynamic> toJson() => {
-    "size": size,
-    "cells": cells,
-  };
+  Map<String, dynamic> toJson() => {"size": size, "cells": cells};
 }

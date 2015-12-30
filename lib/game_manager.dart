@@ -25,9 +25,9 @@ class GameManager {
     this.size = size;
 
     inputManager
-        ..onMove(move)
-        ..onRestart(restart)
-        ..onKeepPlaying(continuePlaying);
+      ..onMove(move)
+      ..onRestart(restart)
+      ..onKeepPlaying(continuePlaying);
 
     setup();
   }
@@ -112,12 +112,12 @@ class GameManager {
   }
 
   Map<String, dynamic> toJson() => {
-    'grid': grid,
-    'score': score,
-    'over': over,
-    'won': won,
-    'keepPlaying': keepPlaying,
-  };
+        'grid': grid,
+        'score': score,
+        'over': over,
+        'won': won,
+        'keepPlaying': keepPlaying,
+      };
 
   // Save all tile positions and remove merger info
   void prepareTiles() {
@@ -216,10 +216,7 @@ class GameManager {
 
   // Build a list of positions to traverse in the right order
   Map<String, List<num>> buildTraversals(Position vector) {
-    Map<String, List<num>> traversals = {
-      'x': [],
-      'y': [],
-    };
+    Map<String, List<num>> traversals = {'x': [], 'y': [],};
 
     for (int pos = 0; pos < size; pos++) {
       traversals['x'].add(pos);

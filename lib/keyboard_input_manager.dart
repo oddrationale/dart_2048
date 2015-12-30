@@ -15,9 +15,11 @@ class KeyboardInputManager {
   void onMove(void callback(int direction)) {
     moveEvent = callback;
   }
+
   void onRestart(void callback()) {
     restartEvent = callback;
   }
+
   void onKeepPlaying(void callback()) {
     keepPlayingEvent = callback;
   }
@@ -25,9 +27,11 @@ class KeyboardInputManager {
   void emitMove(int direction) {
     moveEvent(direction);
   }
+
   void emitRestart() {
     restartEvent();
   }
+
   void emitKeepPlaying() {
     keepPlayingEvent();
   }
@@ -51,10 +55,7 @@ class KeyboardInputManager {
     // Respond to direction keys
     document.onKeyDown.listen((KeyboardEvent event) {
       bool modifiers =
-          event.altKey ||
-          event.ctrlKey ||
-          event.metaKey ||
-          event.shiftKey;
+          event.altKey || event.ctrlKey || event.metaKey || event.shiftKey;
       int mapped = map[event.which];
 
       if (!modifiers && mapped != null) {
