@@ -8,6 +8,7 @@
 .DS_Store
 .idea
 .project
+.packages
 .pub/
 build/
 packages
