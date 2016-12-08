@@ -10,7 +10,10 @@ class Position {
     y = json["y"];
   }
 
-  Map<String, num> toJson() => {"x": x, "y": y,};
+  Map<String, num> toJson() => {
+        "x": x,
+        "y": y,
+      };
 }
 
 class Tile {
@@ -33,5 +36,8 @@ class Tile {
     this.position = position;
   }
 
-  Map<String, dynamic> toJson() => {"position": position, "value": value,};
+  Map<String, dynamic> toJson() => {
+        "position": position,
+        "value": value,
+      };
 }

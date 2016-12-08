@@ -216,7 +216,10 @@ class GameManager {
 
   // Build a list of positions to traverse in the right order
   Map<String, List<num>> buildTraversals(Position vector) {
-    Map<String, List<num>> traversals = {'x': [], 'y': [],};
+    Map<String, List<num>> traversals = {
+      'x': [],
+      'y': [],
+    };
 
     for (int pos = 0; pos < size; pos++) {
       traversals['x'].add(pos);
